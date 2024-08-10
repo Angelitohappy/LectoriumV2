@@ -7,7 +7,7 @@ from .models import User
 from books.models import Book
 from books.views import book_list_view
 
-# Create your views here.
+#holis
 def my_home(request):
     # Obtener todos los libros de la base de datos
     books = Book.objects.all()
