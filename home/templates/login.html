@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inicio de Sesión</title>
+<style>
+    body {
+        background-color: #f7ebd3; /* Color de fondo */
+        font-family: Arial, sans-serif;
+        color: #521908; /* Color del texto */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .login-container {
+        background-color: #ca7b42; /* Color del contenedor */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+    }
+    h2 {
+        text-align: center;
+        color: #f7ebd3; /* Color del título */
+    }
+    .form-control {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    .form-control input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #521908; /* Color del borde */
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    .login-button {
+        background-color: #7e4b27; /* Color del botón */
+        color: #f7ebd3; /* Color del texto del botón */
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+    }
+    .register-button {
+        background-color: transparent;
+        color: #521908; /* Color del texto del botón de registro */
+        border: 1px solid #521908; /* Color del borde */
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .register-button:hover {
+        background-color: #521908; /* Color de fondo al pasar el ratón */
+        color: #f7ebd3; /* Color del texto al pasar el ratón */
+    }
+</style>
+</head>
+<body>
+<div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    <form action="{% url 'home:login' %}" method="post">
+        {% csrf_token %}
+        <div class="form-control">
+            <input type="text" name="username" placeholder="Usuario" required>
+        </div>
+        <div class="form-control">
+            <input type="password" name="password" placeholder="Contraseña" required>
+        </div>
+        <button type="submit" class="login-button">Iniciar Sesión</button>
+    </form>
+    <div class="login-link">
+        <p>¿Aun no tienes cuenta? <a href="{% url 'home:register' %}">Registrarse</a></p>
+    </div>
+</div>
+
+<!-- JavaScript específico de la página -->
+{% block javascripts %}{% endblock javascripts %}
+</body>
+</html>

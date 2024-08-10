@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Autor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7ebd3; 
+            color: #521908; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .update-container {
+            background-color: #ca7b42; 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+            color: #f7ebd3; 
+        }
+        .form-control {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        .form-control input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #521908; 
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .update-button {
+            background-color: #7e4b27; 
+            color: #f7ebd3; 
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .back-link a {
+            color: #521908; 
+            text-decoration: none;
+        }
+        .back-link a:hover {
+            text-decoration: underline; 
+        }
+    </style>
+</head>
+<body>
+    <div class="update-container">
+        <h2>Actualizar Autor</h2>
+        <form action="{% url 'books:update_author' author.id %}" method="post">
+            {% csrf_token %}
+            <div class="form-control">
+                <label for="pseudonym">Seudónimo:</label>
+                <input type="text" id="pseudonym" name="pseudonym" value="{{ author.pseudonym }}" required>
+            </div>
+            <button type="submit" class="update-button">Actualizar</button>
+        </form>
+        <div class="back-link">
+            <p><a href="{% url 'books:author_list' %}">Volver a la lista de autores</a></p>
+        </div>
+    </div>
+</body>
+</html>

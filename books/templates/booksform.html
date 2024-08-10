@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Libro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7ebd3; 
+            color: #521908; 
+            margin: 0;
+            padding: 20px;
+        }
+    
+        h1 {
+            color: #7e4b27; 
+            text-align: center;
+        }
+    
+        form {
+            background-color: #ffffff; 
+            border: 1px solid #ca7b42; 
+            border-radius: 5px;
+            padding: 20px;
+            max-width: 600px; 
+            margin: 0 auto; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    
+        label {
+            display: block; 
+            margin-bottom: 5px; 
+            font-weight: bold; 
+            color: #521908; 
+        }
+    
+        input[type="text"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%; 
+            padding: 10px; 
+            margin-bottom: 15px; 
+            border: 1px solid #ca7b42;
+            border-radius: 5px; 
+        }
+    
+        button {
+            background-color: #7e4b27; 
+            color: white; 
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            display: block; 
+            width: 100%; 
+        }
+    
+        button:hover {
+            background-color: #521908; 
+        }
+    
+        a {
+            display: block; 
+            text-align: center; 
+            margin-top: 20px; 
+            color: #7e4b27; 
+            text-decoration: none; 
+        }
+    
+        a:hover {
+            text-decoration: underline; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Agregar Nuevo Libro</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }} 
+            <button type="submit">Guardar Libro</button>
+        </form>
+        <a href="{% url 'books:book_list' %}">Volver a la lista de libros</a> 
+    </div>
+</body>
+</html>

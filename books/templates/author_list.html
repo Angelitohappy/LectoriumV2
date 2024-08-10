@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Autores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7ebd3; 
+            color: #521908; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #7e4b27; 
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #521908; 
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #ca7b42; 
+            color: #f7ebd3; 
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2; 
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .action-buttons a {
+            margin: 0 10px;
+            padding: 10px 15px;
+            background-color: #7e4b27; 
+            color: #f7ebd3; 
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .action-buttons a:hover {
+            background-color: #521908; 
+        }
+        button {
+            background-color: #7e4b27; 
+            color: white; 
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin-top: 20px; 
+        }
+    
+        button:hover {
+            background-color: #521908; 
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Lista de Autores</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Seudónimo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for author in authors %}
+            <tr>
+                <td>{{ author.id }}</td>
+                <td>{{ author.pseudonym }}</td>
+                <td class="action-buttons">
+                    
+                    <a href="{% url 'books:update_author' author.id %}">Actualizar</a>
+                    <a href="{% url 'books:delete_author' author.id %}">Eliminar</a> 
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No hay autores disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="action-buttons">
+        <a href="{% url 'books:add_author' %}">Agregar Autor</a> 
+    </div>
+
+    <div class="row ml-0 mb-3">
+        <a href="{% url 'home:home' %}">
+            <button type="button" class="btn btn-info font-weight-bold">
+                <i class="fas fa-long-arrow-alt-left mr-2"></i>
+                Volver atrás
+            </button>
+        </a>
+    </div>
+</body>
+</html>

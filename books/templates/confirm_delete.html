@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Eliminación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7ebd3; 
+            color: #521908; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #7e4b27; 
+        }
+        .confirm-buttons {
+            margin-top: 20px;
+        }
+        .confirm-buttons form {
+            display: inline;
+        }
+        .button {
+            background-color: #7e4b27; 
+            color: #f7ebd3; 
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .back-button {
+            background-color: #521908; 
+        }
+        .button:hover {
+            background-color: #521908; 
+        }
+    </style>
+</head>
+<body>
+    <h1>¿Estás seguro de que deseas eliminar a "{{ author.pseudonym }}"?</h1>
+    <div class="confirm-buttons">
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="button">Eliminar</button>
+        </form>
+        <a href="{% url 'books:author_list' %}" class="button back-button">Cancelar</a>
+    </div>
+</body>
+</html>

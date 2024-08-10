@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }}</title>
+    <style>
+        body {
+            background-color: #f7ebd3; /* Color de fondo */
+            color: #521908; /* Color del texto principal */
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #521908; /* Color de la barra superior */
+            color: #f7ebd3; /* Color del texto en la barra superior */
+            padding: 10px;
+            text-align: center;
+        }
+
+        .book-container {
+            margin: 20px;
+            padding: 20px;
+            background-color: #ca7b42; /* Color del contenedor del libro */
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .book-container img {
+            width: 200px;
+            height: 300px;
+        }
+
+        h1 {
+            color: #f7ebd3; /* Color del título del libro */
+        }
+
+        p {
+            margin: 10px 0;
+        }
+        p strong {
+            color: ;
+            margin: 10px 0;
+        }
+
+        .back-link {
+            background-color: #7e4b27; /* Color del enlace de regreso */
+            color: #f7ebd3; /* Color del texto del enlace */
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .back-link:hover {
+            background-color: #521908; /* Color al pasar el mouse */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>{{ book.title }}</h1>
+    </header>
+    <div class="book-container">
+        <img src="{{ book.front_page.url }}" alt="Portada de {{ book.title }}">
+        <p><strong>Sinopsis:</strong> {{ book.synopsis }}</p>
+        <p><strong>Fecha de publicación:</strong> {{ book.publication_date }}</p>
+        <p><strong>Clasificación:</strong> {{ book.classification }}</p>
+        <p><strong>Autores:</strong> 
+            {% for author in book.authors.all %}
+                {{ author.pseudonym }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+        <a href="{% url 'home:home' %}" class="back-link">Volver a la lista de libros</a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Libros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7ebd3; 
+            color: #521908; 
+            margin: 0;
+            padding: 20px;
+        }
+    
+        h1 {
+            color: #7e4b27; 
+            text-align: center;
+        }
+    
+        table {
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+        }
+    
+        th, td {
+            border: 1px solid #ca7b42; 
+            padding: 10px; 
+            text-align: left;
+        }
+    
+        th {
+            background-color: #7e4b27; 
+            color: white; 
+        }
+    
+        tr:nth-child(even) {
+            background-color: #f2f2f2; 
+        }
+    
+        a {
+            display: block; 
+            text-align: center; 
+            margin-top: 20px; 
+            color: #7e4b27; 
+            text-decoration: none; 
+        }
+    
+        a:hover {
+            text-decoration: underline; 
+        }
+    
+        button {
+            background-color: #7e4b27; 
+            color: white; 
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin-top: 20px; 
+        }
+    
+        button:hover {
+            background-color: #521908; 
+        }
+
+        img {
+            max-width: 100px; 
+            height: auto; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Libros</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ISBN</th>
+                <th>Titulo</th>
+                <th>Sinopsis</th>
+                <th>Fecha de publicacion</th>
+                <th>Portada</th>
+                <th>Clasificacion</th>
+                <th>Authors</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.isbn }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.synopsis }}</td>
+                <td>{{ book.publication_date }}</td>
+                <td><img src="{{ book.front_page.url }}" alt="Portada de {{ book.title }}"></td>
+                <td>{{ book.classification }}</td>
+                <td>{{ book.authors.all|join:", " }}</td>
+                <td class="action-buttons">
+                    <a href="{% url 'books:add_book' %}">Agregar</a>
+                    <a href="{% url 'books:update_book' book.id %}">Actualizar</a>
+                    <a href="{% url 'books:delete_book' book.id %}">Eliminar</a> 
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">No hay libros disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="row ml-0 mb-3">
+        <a href="{% url 'books:add_book' %}">
+            <button type="button" class="btn btn-info font-weight-bold">
+                <i class="fas fa-long-arrow-alt-left mr-2"></i>
+                Agregar
+            </button>
+        </a>
+    </div>
+    <div class="row ml-0 mb-3">
+    <a href="{% url 'home:home' %}">
+        <button type="button" class="btn btn-info font-weight-bold">
+            <i class="fas fa-long-arrow-alt-left mr-2"></i>
+            Volver atrás
+        </button>
+    </a>
+</div>
+</body>
+</html>
