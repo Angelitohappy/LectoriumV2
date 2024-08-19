@@ -99,7 +99,6 @@
                 <td>{{ book.classification }}</td>
                 <td>{{ book.authors.all|join:", " }}</td>
                 <td class="action-buttons">
-                    <a href="{% url 'books:add_book' %}">Agregar</a>
                     <a href="{% url 'books:update_book' book.id %}">Actualizar</a>
                     <a href="{% url 'books:delete_book' book.id %}">Eliminar</a> 
                 </td>
